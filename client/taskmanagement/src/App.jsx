@@ -21,7 +21,7 @@ function App() {
             headers: { Authorization: `Bearer ${Cookies.get("token")}` },
           }
         );
-        console.log(res.data)
+        console.log(res.data);
       } catch (error) {
         if (
           error.response.data.messages[0].message ===
