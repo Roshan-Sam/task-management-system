@@ -11,7 +11,15 @@ import { useLocation } from "react-router-dom";
 import "./App.css";
 
 function App() {
+  const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const tabFromUrl = urlParams.get("tab");
+    if (tabFromUrl) setTab(tabFromUrl);
+  }, [location.search]);
+  
   useEffect(() => {
     const TokenVerify = async () => {
       try {
