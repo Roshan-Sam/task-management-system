@@ -4,6 +4,7 @@ import { Table } from "flowbite-react";
 import { Image } from "antd";
 import { Badge, Spinner } from "flowbite-react";
 import Cookies from "js-cookie";
+import { Popover } from "antd";
 
 const UserCompletedTasks = () => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -49,6 +50,7 @@ const UserCompletedTasks = () => {
             <Table.Head>
               <Table.HeadCell>No</Table.HeadCell>
               <Table.HeadCell>Title</Table.HeadCell>
+              <Table.HeadCell>Description</Table.HeadCell>
               <Table.HeadCell>Created at</Table.HeadCell>
               <Table.HeadCell>Completed at</Table.HeadCell>
               <Table.HeadCell>status</Table.HeadCell>
@@ -64,6 +66,19 @@ const UserCompletedTasks = () => {
                     {index + 1}
                   </Table.Cell>
                   <Table.Cell>{task.title}</Table.Cell>
+                  <Table.Cell className="text-md">
+                    <Popover
+                      content={task.description}
+                      arrow={false}
+                      overlayStyle={{
+                        maxWidth: 400,
+                        wordWrap: "break-word",
+                      }}
+                      placement="bottom"
+                    >
+                      <p className="text-cyan-600 cursor-pointer">view</p>
+                    </Popover>
+                  </Table.Cell>
                   <Table.Cell>
                     {new Date(task.created_date).toLocaleDateString()}
                   </Table.Cell>

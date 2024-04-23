@@ -3,6 +3,7 @@ import axios from "axios";
 import { Image } from "antd";
 import { Badge, Spinner, Table } from "flowbite-react";
 import Cookies from "js-cookie";
+import { Popover } from "antd";
 
 const AdminCompletedTasks = () => {
   const [completedTasks, setCompletedTasks] = useState(null);
@@ -48,6 +49,7 @@ const AdminCompletedTasks = () => {
             <Table.Head>
               <Table.HeadCell>No</Table.HeadCell>
               <Table.HeadCell>Title</Table.HeadCell>
+              <Table.HeadCell>Description</Table.HeadCell>
               <Table.HeadCell>Created at</Table.HeadCell>
               <Table.HeadCell>Completed at</Table.HeadCell>
               <Table.HeadCell>status</Table.HeadCell>
@@ -64,6 +66,19 @@ const AdminCompletedTasks = () => {
                     {index + 1}
                   </Table.Cell>
                   <Table.Cell>{task.title}</Table.Cell>
+                  <Table.Cell className="text-center text-md">
+                    <Popover
+                      content={task.description}
+                      arrow={false}
+                      overlayStyle={{
+                        maxWidth: 400,
+                        wordWrap: "break-word",
+                      }}
+                      placement="bottom"
+                    >
+                      <p className="text-cyan-600 cursor-pointer">view</p>
+                    </Popover>
+                  </Table.Cell>
                   <Table.Cell>
                     {new Date(task.created_date).toLocaleDateString()}
                   </Table.Cell>
