@@ -6,11 +6,12 @@ import UserDashboard from "./pages/UserDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./App.css";
 
 function App() {
+  const [tab, setTab] = useState();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ function App() {
     const tabFromUrl = urlParams.get("tab");
     if (tabFromUrl) setTab(tabFromUrl);
   }, [location.search]);
-  
+
   useEffect(() => {
     const TokenVerify = async () => {
       try {
@@ -29,7 +30,6 @@ function App() {
             headers: { Authorization: `Bearer ${Cookies.get("token")}` },
           }
         );
-        console.log(res.data);
       } catch (error) {
         if (
           error.response.data.messages[0].message ===
@@ -40,7 +40,7 @@ function App() {
       }
     };
     TokenVerify();
-  }, []);
+  }, [tab]);
   return (
     <>
       <Routes>
