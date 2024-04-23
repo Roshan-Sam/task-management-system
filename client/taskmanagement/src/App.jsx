@@ -7,6 +7,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./App.css";
 
 function App() {
